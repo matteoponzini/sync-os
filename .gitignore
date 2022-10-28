@@ -1,0 +1,16 @@
+# jetbrains IDE files
+.idea
+
+# virtual environment
+venv/
+programs/
+config/
+.history/
+.stversions/*
+.stversions
+.stfolder/
+__pycache__/**
+.stignore/
+src/__pycache__/
+vault.yml
+password.txt

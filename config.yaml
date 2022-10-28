@@ -1,0 +1,18 @@
+config:
+  programs:
+    location: programs
+  config:
+    location: config
+  debian_file:
+    location: deb
+  history:
+    location: .history
+  install:
+    location: install.yaml
+  repository:
+    app: https://github.com/matteoponzini/store/tree/main/programs/
+    config: https://github.com/matteoponzini/store/tree/main/configs/
+  ansible:
+    vault:
+      password_file: password.txt #this is password for vault
+      file: vault.yml

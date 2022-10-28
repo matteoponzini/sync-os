@@ -57,7 +57,7 @@ class Config(Interface):
         if super().exist():
             installPath = super().path().joinpath('config.yaml')
             if installPath.exists():
-                outputDir = './config/'
+                outputDir = './configs/'
                 Donwnloader().download(url=self.remote(), name=self.name, output_dir=outputDir)
                 return execute(installPath)
         return None

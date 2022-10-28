@@ -2,7 +2,7 @@ config:
   programs:
     location: programs
   config:
-    location: config
+    location: configs
   debian_file:
     location: deb
   history:
@@ -10,8 +10,8 @@ config:
   install:
     location: install.yaml
   repository:
-    app: https://github.com/matteoponzini/store/tree/main/programs/
-    config: https://github.com/matteoponzini/store/tree/main/configs/
+    app: http://127.0.1.1/store/programs/
+    config: http://127.0.1.1/store/configs/
   ansible:
     vault:
       password_file: password.txt #this is password for vault

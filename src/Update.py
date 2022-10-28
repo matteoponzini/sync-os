@@ -27,7 +27,7 @@ class Program(Interface):
         if super().exist():
             self.execute(installPath)
         else: 
-            outputDir = './programs/'+self.name
+            outputDir = './programs/'
             test = self.remote()
             Donwnloader().download(url=test, name=self.name, output_dir=outputDir)
             self.execute(installPath)
@@ -57,7 +57,7 @@ class Config(Interface):
         if super().exist():
             installPath = super().path().joinpath('config.yaml')
             if installPath.exists():
-                outputDir = './config/'+self.name
+                outputDir = './config/'
                 Donwnloader().download(url=self.remote(), name=self.name, output_dir=outputDir)
                 return execute(installPath)
         return None

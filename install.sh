@@ -6,4 +6,4 @@ pip3 install -r src/requirements.txt
 ansible-vault create vault.yml
 read -p "Enter password vault: " passwordVault
 echo $passwordVault > password.txt
-./src/watcher.py
+python3 ./src/watcher.py

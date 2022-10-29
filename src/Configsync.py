@@ -27,6 +27,29 @@ class Directory:
         if self.path.exists() and self.path.is_dir(): 
             shutil.rmtree(self.path)
 
+class File:
+    def __init__(self, path : Path, isLocal = False, isHome = False):
+        self.path = path
+        if isLocal:
+            self.path = Path.cwd().joinpath(path)
+        if isHome:
+            self.path = Path.home().joinpath(path)
+        self.isLocal = isLocal
+        self.isHome = isHome
+    
+    def link(self, toDirectory: 'File'):
+        toDirectory.remove_link()
+        toDirectory.remove_folder()
+        toDirectory.path.symlink_to(self.path)
+    
+    def remove_link(self):
+        if self.path.exists() and self.path.is_symlink():
+            self.path.unlink()
+
+    def remove_folder(self):
+        if self.path.exists() and self.path.is_file(): 
+            self.unlink()
+
 class Configuration:
     def __init__(self, path : Path):
         self.path = path
@@ -42,8 +65,12 @@ class Configuration:
                 local['type'] = location['type']
                 isLocal = location['origin'].get('isLocal')
                 isHome = location['to'].get('isHome')
-                local['origin'] = Directory(Path(location['origin']['location']),isLocal=isLocal)
-                local['to'] = Directory(Path(location['to']['location']),isHome=isHome)
+                if location['type'] == 'directory':
+                    local['origin'] = Directory(Path(location['origin']['location']),isLocal=isLocal)
+                    local['to'] = Directory(Path(location['to']['location']),isHome=isHome)
+                elif location['type'] == 'file':
+                    local['origin'] = File(Path(location['origin']['location']),isLocal=isLocal)
+                    local['to'] = File(Path(location['to']['location']),isHome=isHome)                    
                 locations.append(local)
             programs.append(Program(program['name'], locations))
         return programs

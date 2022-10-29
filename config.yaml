@@ -10,8 +10,8 @@ config:
   install:
     location: install.yaml
   repository:
-    app: http://127.0.1.1/store/programs/
-    config: http://127.0.1.1/store/configs/
+    app: http://192.168.19.130/store/programs/
+    config: http://192.168.19.130/store/configs/
   ansible:
     vault:
       password_file: password.txt #this is password for vault

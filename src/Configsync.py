@@ -48,7 +48,7 @@ class File:
 
     def remove_folder(self):
         if self.path.exists() and self.path.is_file(): 
-            self.unlink()
+            self.path.unlink()
 
 class Configuration:
     def __init__(self, path : Path):
